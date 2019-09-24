@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class PyramidController {
 
     /**
-     * A controller method that will test the provided word to determine
-     * @param word
-     * @return
+     * A controller method that will test the provided word to determine whether it's a pyramid word or not.
+     * @param word - the word to test for pyramid attributes
+     * @return boolean - true if the word is a pyramid word, false if it is not
      */
     @RequestMapping("/{word}")
     public boolean testWord(@PathVariable String word) {
