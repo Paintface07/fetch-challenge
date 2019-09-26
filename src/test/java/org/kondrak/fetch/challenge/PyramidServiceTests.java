@@ -3,7 +3,7 @@ package org.kondrak.fetch.challenge;
 import org.junit.Test;
 import org.kondrak.fetch.challenge.pyramid.PyramidService;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * A test suite for the service layer of the application, which houses the primary logic for classifying pyramid words.
@@ -17,7 +17,7 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldFailGracefullyForEmptyString() {
-        assertEquals(false, pyramidService.isPyramidWord(PyramidTestConstants.EMPTY_STRING));
+        assertFalse(pyramidService.isPyramidWord(PyramidTestConstants.EMPTY_STRING));
     }
 
     /**
@@ -25,7 +25,7 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldReturnTrueForPyramidWord() {
-        assertEquals(true, pyramidService.isPyramidWord(PyramidTestConstants.VALID_PYRAMID_WORD));
+        assertTrue(pyramidService.isPyramidWord(PyramidTestConstants.VALID_PYRAMID_WORD));
     }
 
     /**
@@ -33,7 +33,7 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldReturnFalseForNonPyramidWordByCount() {
-        assertEquals(false, pyramidService.isPyramidWord(PyramidTestConstants.INVALID_PYRAMID_WORD));
+        assertFalse(pyramidService.isPyramidWord(PyramidTestConstants.INVALID_PYRAMID_WORD));
     }
 
     /**
@@ -41,7 +41,7 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldReturnTrueForSymbolPyramid() {
-        assertEquals(true, pyramidService.isPyramidWord(PyramidTestConstants.SYMBOL_PYRAMID_WORD));
+        assertTrue(pyramidService.isPyramidWord(PyramidTestConstants.SYMBOL_PYRAMID_WORD));
     }
 
     /**
@@ -49,7 +49,7 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldReturnFalseForSymbolNonPyramid() {
-        assertEquals(false, pyramidService.isPyramidWord(PyramidTestConstants.SYMBOL_NON_PYRAMID_WORD));
+        assertFalse(pyramidService.isPyramidWord(PyramidTestConstants.SYMBOL_NON_PYRAMID_WORD));
     }
 
     /**
@@ -57,7 +57,7 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldReturnTrueForLongPyramid() {
-        assertEquals(true, pyramidService.isPyramidWord(PyramidTestConstants.REALLY_LONG_PYRAMID_WORD));
+        assertTrue(pyramidService.isPyramidWord(PyramidTestConstants.REALLY_LONG_PYRAMID_WORD));
     }
 
     /**
@@ -65,7 +65,7 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldReturnTrueForShuffledPyramid() {
-        assertEquals(true, pyramidService.isPyramidWord(PyramidTestConstants.VALID_SHUFFLED_PYRAMID_WORD));
+        assertTrue(pyramidService.isPyramidWord(PyramidTestConstants.VALID_SHUFFLED_PYRAMID_WORD));
     }
 
     /**
@@ -73,7 +73,7 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldReturnFalseForSingleLetterCountNonPyramid() {
-        assertEquals(false, pyramidService.isPyramidWord(PyramidTestConstants.NON_PYRAMID_SINGLE_LETTER_COUNT));
+        assertFalse(pyramidService.isPyramidWord(PyramidTestConstants.NON_PYRAMID_SINGLE_LETTER_COUNT));
     }
 
     /**
@@ -81,6 +81,6 @@ public class PyramidServiceTests {
      */
     @Test
     public void pyramidServiceShouldReturnTrueForSingleLetterPyramid() {
-        assertEquals(true, pyramidService.isPyramidWord(PyramidTestConstants.NON_PYRAMID_SINGLE_LETTER));
+        assertTrue(pyramidService.isPyramidWord(PyramidTestConstants.NON_PYRAMID_SINGLE_LETTER));
     }
 }
