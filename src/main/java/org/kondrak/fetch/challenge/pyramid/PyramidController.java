@@ -28,14 +28,15 @@ public class PyramidController {
     /**
      * A controller method that will test the provided word to determine whether it's a pyramid word or not.
      * A {@link PathVariable} is used for the word since it *should* be a relatively small and simple piece of data.
+     *
      * @param word - the word to test for pyramid attributes
      * @return boolean - true if the word is a pyramid word, false if it is not
      */
     @RequestMapping("/{word}")
     public boolean testWord(@PathVariable String word) {
-        // log time prior to starting processing
+        // log time prior to starting processing (could use Spring AOP for this, but that's kind of overkill for this)
         LocalTime start = LocalTime.now();
-        LOGGER.info("Starting to process: {} - {}", word, start);
+        LOGGER.info("Processing: {} - {}", word, start);
 
         boolean isPyramid = pyramidService.isPyramidWord(word);
 
@@ -46,6 +47,6 @@ public class PyramidController {
         long nanos = start.until( end, ChronoUnit.NANOS);
         LOGGER.info("End processing! - at {} - {}m {}s {}n", end, minutes, seconds, nanos);
 
-        return isPyramid;    // stub out the method for now
+        return isPyramid;
     }
 }

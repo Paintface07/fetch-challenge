@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PyramidAppTests {
+public class PyramidControllerTests {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -37,9 +37,40 @@ public class PyramidAppTests {
 	 * example data.
 	 */
 	@Test
-	public void pyramidEndpointReturnsTrueForValidPyramidWord() throws Exception {
+	public void pyramidEndpointShouldReturnTrueForValidPyramidWord() throws Exception {
 		this.mockMvc.perform(get("/pyramid/" + PyramidTestConstants.VALID_PYRAMID_WORD))
 				.andExpect(status().isOk())
 				.andExpect(content().string(String.valueOf(true)));
+	}
+
+    /**
+     * A test to ensure the /pyramid/{word} endpoint returns false for a word that is NOT a pyramid word for the
+     * provided example data.
+     */
+    @Test
+    public void pyramidEndpointShouldReturnFalseForInvalidPyramidWord() throws Exception {
+        this.mockMvc.perform(get("/pyramid/" + PyramidTestConstants.INVALID_PYRAMID_WORD))
+                .andExpect(status().isOk())
+                .andExpect(content().string(String.valueOf(false)));
+    }
+
+	/**
+	 * A test to ensure the /pyramid/{word} endpoint returns false for words that have multiple letters with the same
+	 * counts.
+	 */
+	@Test
+	public void pyramidEndpointShouldReturnFalseForWordsWithDuplicateCounts() throws Exception {
+		this.mockMvc.perform(get("/pyramid/" + PyramidTestConstants.NON_PYRAMID_BY_DUPLICATES))
+				.andExpect(status().isOk())
+				.andExpect(content().string(String.valueOf(false)));
+	}
+
+	/**
+	 * Ensures the application responds with a 404 when no word is specified.
+	 */
+	@Test
+	public void pyramidEndpointShouldReturn404ForEmptyString() throws Exception {
+		this.mockMvc.perform(get("/pyramid/" + PyramidTestConstants.EMPTY_STRING))
+				.andExpect(status().isNotFound());
 	}
 }
